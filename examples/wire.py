@@ -46,10 +46,14 @@ parser.add_argument('--blocksize', type=int, help='block size')
 parser.add_argument('--latency', type=float, help='latency in seconds')
 args = parser.parse_args(remaining)
 
+device_info = sd.query_devices(args.device, 'output')
+print(device_info)
 
 def callback(indata, outdata, frames, time, status):
     if status:
         print(status)
+    for frame in indata:
+        print(frame)
     outdata[:] = indata
 
 

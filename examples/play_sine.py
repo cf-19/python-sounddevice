@@ -39,11 +39,11 @@ parser.add_argument(
 args = parser.parse_args(remaining)
 
 start_idx = 0
-
 try:
     samplerate = sd.query_devices(args.device, 'output')['default_samplerate']
 
     def callback(outdata, frames, time, status):
+        # each frames -> frame -> channel -> float
         if status:
             print(status, file=sys.stderr)
         global start_idx
